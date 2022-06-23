@@ -21,6 +21,10 @@ build({
   entryPoints: ['src/index.tsx'],
   outfile: 'dist/index.js',
   target: ['es2019'],
+  loader: {
+    '.tpl.js': 'base64',
+    '.html': 'base64',
+  },
   format: 'esm',
   bundle: true,
   write: false,
@@ -34,8 +38,10 @@ build({
         output(result);
       }
     }
-  }
-}).then(output).catch(console.error);
+  },
+})
+.then(output)
+.catch(console.error);
 
 function output(result) {
   const [html, css] = result.outputFiles;
